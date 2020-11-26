@@ -3,13 +3,31 @@
 <body>
 
 <h2>Finding Hospitals</h2>
+<div id="entries">
 
+</div>>
 
-<p>
-<script src = "index.js" > </script>
+<form>
+<label for="msg">&nbsp;</label>
+<button id='submitButton'>Submit</button>
+</form>
+<script type="text/javascript">
+var API_URL = "https://1399n7dte4.execute-api.us-east-1.amazonaws.com/dev/getcovidhospitals"
+$(document).ready(function(){
+$.ajax({
+type: 'GET',
+url:API_URL,
 
-</p>
+success: function(data){
+    $('#entries').html('');
+    data.Items.$array.forEach(element => {
+        $('#entries').append('<p>' + element + '</p>')
+    });
+}
+});
+});
 
+</script>
 
 </body>
 </html>
