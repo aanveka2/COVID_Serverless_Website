@@ -8,15 +8,19 @@
 </div>>
 
 <form>
+    <label for="zip">Enter Zipcode</label>
+    <input type="text" value="zipcode"></input>
 <label for="msg">&nbsp;</label>
 <button id='submitButton'>Submit</button>
 </form>
 <script type="text/javascript">
 var API_URL = "https://1399n7dte4.execute-api.us-east-1.amazonaws.com/dev/getcovidhospitals"
-$(document).ready(function(){
+$('#submitButton').on('click',function(){
 $.ajax({
 type: 'GET',
 url:API_URL,
+data: JSON.stringify({"ZipCode": $('#zipcode').val()}),
+contentType:"application/json",
 
 success: function(data){
     $('#entries').html('');
@@ -25,6 +29,7 @@ success: function(data){
     });
 }
 });
+return false;
 });
 
 </script>
