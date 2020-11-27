@@ -32,7 +32,7 @@ success: function(data){
     console.log(Object.keys(obj).length);
     for(let i=0; i<Object.keys(obj).length;i++){
         console.log(data.Item[i]);
-        $('#entries').html('<p>' + data.Item[i] + '</p>')
+        $('#entries').html('<p>' + Object.value() + '</p>')
     }
     
 }
