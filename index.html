@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<h2>Finding Hospitals</h2>
-<div id="entries">
-
-</div>
-
-<form>
-    <label for="zip">Enter Zipcode</label>
-    <input type="text" value="zipcode"></input>
-<label for="msg">&nbsp;</label>
-<button id='submitButton'>Submit</button>
-</form>
+    <h2>Finding Hospitals</h2>
+    <div id="entries"></div>
+    <form>
+        <label for="zip">Enter Zipcode</label>
+        <input type="text" id = "zipcode" value=""></input>
+        <label for="msg">&nbsp;</label>
+        <button id='submitButton'>Submit</button>
+    </form>
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 <script type="text/javascript">
-var API_URL = "https://e51vfb2s30.execute-api.us-east-1.amazonaws.com/Dev/getcovidhospitals"
+var API_URL = "https://1399n7dte4.execute-api.us-east-1.amazonaws.com/dev/getcovidhospitals"
 $('#submitButton').on('click',function(){
+    console.log($("#zipcode").val());
 $.ajax({
-type: 'GET',
-url:API_URL,
-data: {ZipCode: "01949" , 
-    Hospital_Id:"34"},
-contentType:"application/json",
-Origin: "*",
+    type: 'GET',
+    url:API_URL,
+    data: {ZipCode: $("#zipcode").val()},
+    contentType:"application/json",
+    Origin: "*",
 
-success: function(data){
-    console.log(data.Item.Hospital_Id);
-    const obj = Object.assign({},data.Item);
-    $('#entries').html('');
-    console.log(Object.keys(obj).length);
-    for(let i=0; i<Object.keys(obj).length;i++){
-        console.log(data.Item[i]);
-        $('#entries').html('<p>' + Object.value() + '</p>')
+    success: function(data){  
+        console.log(data.Items);  
+        const obj = Object.assign({},data.Items);
+        $('#entries').html('');        
+        
+        data.Items.forEach(element => {
+            for (const [key, value] of Object.entries(element)) {
+            $('#entries').append('<p>' + key +':' +value+ '</p>')
+            }
+        }) ;   
     }
-    
-}
 });
 return false;
 });
