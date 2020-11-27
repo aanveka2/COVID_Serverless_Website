@@ -5,7 +5,7 @@
 <h2>Finding Hospitals</h2>
 <div id="entries">
 
-</div>>
+</div>
 
 <form>
     <label for="zip">Enter Zipcode</label>
@@ -13,20 +13,28 @@
 <label for="msg">&nbsp;</label>
 <button id='submitButton'>Submit</button>
 </form>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 <script type="text/javascript">
-var API_URL = "https://1399n7dte4.execute-api.us-east-1.amazonaws.com/dev/getcovidhospitals"
+var API_URL = "https://e51vfb2s30.execute-api.us-east-1.amazonaws.com/Dev/getcovidhospitals"
 $('#submitButton').on('click',function(){
 $.ajax({
 type: 'GET',
 url:API_URL,
-data: JSON.stringify({"ZipCode": $('#zipcode').val()}),
+data: {ZipCode: "01949" , 
+    Hospital_Id:"34"},
 contentType:"application/json",
+Origin: "*",
 
 success: function(data){
+    console.log(data.Item.Hospital_Id);
+    const obj = Object.assign({},data.Item);
     $('#entries').html('');
-    data.Items.$array.forEach(element => {
-        $('#entries').append('<p>' + element + '</p>')
-    });
+    console.log(Object.keys(obj).length);
+    for(let i=0; i<Object.keys(obj).length;i++){
+        console.log(data.Item[i]);
+        $('#entries').html('<p>' + data.Item[i] + '</p>')
+    }
+    
 }
 });
 return false;
