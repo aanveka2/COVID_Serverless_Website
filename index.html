@@ -1,41 +1,81 @@
 <!DOCTYPE html>
 <html>
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="COVID HOSPITALS">
+    <title>COVID HOSPITALS </title>
+    <link rel="stylesheet" href="/css/pure/pure-min.css">
+    <link rel="stylesheet" href="/css/pure/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+
 <body>
+    <h2>Finding Hospitals</h2>
 
-<h2>Finding Hospitals</h2>
-<div id="entries">
 
-</div>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" href="">COVID HOSPITALS</a>
+    
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Help</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">References</a></li>
+            </ul>
+        </div>
+    </div>
 
-<form>
-    <label for="zip">Enter Zipcode</label>
-    <input type="text" value="zipcode"></input>
-<label for="msg">&nbsp;</label>
-<button id='submitButton'>Submit</button>
-</form>
+    <div class="splash-container">
+        <div id="entries"  class="splash">
+            
+            <h1 class="splash-head">Find the COVID Testing Hospitals</h1>
+            <p class="splash-subhead">
+                Enter Your Nearest ZipCode
+            </p>
+            <form>  
+                <input type="text" id = "zipcode" value=""></input>
+                <label for="msg">&nbsp;</label>
+                <button id='submitButton'>Submit</button>
+            </form>
+            
+            
+        </div>
+    </div>
+    
+   
+    
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 <script type="text/javascript">
 var API_URL = "https://e51vfb2s30.execute-api.us-east-1.amazonaws.com/Dev/getcovidhospitals"
 $('#submitButton').on('click',function(){
+    console.log($("#zipcode").val());
 $.ajax({
-type: 'GET',
-url:API_URL,
-data: {ZipCode: "01949" , 
-    Hospital_Id:"34"},
-contentType:"application/json",
-Origin: "*",
+    type: 'GET',
+    url:API_URL,
+    data: {ZipCode: $("#zipcode").val()},
+    contentType:"application/json",
+    Origin: "*",
 
-success: function(data){
-    console.log(data.Item.Hospital_Id);
-    const obj = Object.assign({},data.Item);
-    $('#entries').html('');
-    console.log(Object.keys(obj).length);
-    for(let i=0; i<Object.keys(obj).length;i++){
-        console.log(data.Item[i]);
-        $('#entries').html('<p>' + Object.value() + '</p>')
-    }
     
-}
+
+    success: function(data){  
+        
+        const obj = Object.assign({},data.Items);
+        
+        $('#entries').html(''); 
+        data.Items.forEach(element => {
+            for (const [key, value] of Object.entries(element)) {
+            $('#entries').append('<tr><td>' + key +'</td>' + '<td>' +value+ '</td></tr>');
+            }
+        }) ;   
+    }
 });
 return false;
 });
