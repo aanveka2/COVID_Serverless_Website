@@ -1,4 +1,4 @@
-input[type=text] {
+    input[type=text] {
     background-color: white;
     background-image: url('searchicon.png');
     background-position: 10px 10px;
@@ -183,25 +183,44 @@ a.pure-button-primary {
 .splash-container {
     background: #1f8dd6;
     z-index: 1;
-    overflow: hidden;
+    overflow: auto;
     /* The following styles are required for the "scroll-over" effect */
     width: 100%;
-    height: 88%;
+    height: 300%;
     top: 0;
     left: 0;
-    position: fixed !important;
+    position: absolute !important;
 }
 
-.splash {
+.splash1 {
     /* absolute center .splash within .splash-container */
     width: 80%;
-    height: 50%;
+    height: 15%;
     margin: auto;
     color: white;
-    position: absolute;
+    position: static;
     top: 100px; left: 0; bottom: 0; right: 0;
     text-align: center;
     text-transform: uppercase;
+}
+
+
+
+
+
+.splash2 {
+    /* absolute center .splash within .splash-container */
+    width: 80%;
+    height: 20%;
+    margin: auto;
+    
+    color: white;
+    position: relative;
+    overflow: auto;
+    top: 0px; left: 325px; bottom: 0; right: 0;
+    text-align: center;
+    text-transform: auto;
+    
 }
 
 /* This is the main heading that appears on the blue section */

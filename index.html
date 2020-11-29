@@ -18,7 +18,6 @@
 
 <body>
     <h2>Finding Hospitals</h2>
-<<<<<<< HEAD
 
 
     <div class="header">
@@ -34,7 +33,7 @@
     </div>
 
     <div class="splash-container">
-        <div id="entries"  class="splash">
+        <div  class="splash1">
             
             <h1 class="splash-head">Find the COVID Testing Hospitals</h1>
             <p class="splash-subhead">
@@ -48,22 +47,15 @@
             
             
         </div>
+        <div id="entries"  class="splash2"> </div> 
+        
     </div>
     
    
     
-=======
-    <div id="entries"></div>
-    <form>
-        <label for="zip">Enter Zipcode</label>
-        <input type="text" id = "zipcode" value=""></input>
-        <label for="msg">&nbsp;</label>
-        <button id='submitButton'>Submit</button>
-    </form>
->>>>>>> 97940997af7b6f1d8769b58abfaa35eeca2f1dba
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 <script type="text/javascript">
-var API_URL = "https://1399n7dte4.execute-api.us-east-1.amazonaws.com/dev/getcovidhospitals"
+var API_URL = "https://e51vfb2s30.execute-api.us-east-1.amazonaws.com/Dev/getcovidhospitals"
 $('#submitButton').on('click',function(){
     console.log($("#zipcode").val());
 $.ajax({
@@ -73,27 +65,19 @@ $.ajax({
     contentType:"application/json",
     Origin: "*",
 
-<<<<<<< HEAD
     
 
     success: function(data){  
         
         const obj = Object.assign({},data.Items);
         
-        $('#entries').html(''); 
-        data.Items.forEach(element => {
-            for (const [key, value] of Object.entries(element)) {
-            $('#entries').append('<tr><td>' + key +'</td>' + '<td>' +value+ '</td></tr>');
-=======
-    success: function(data){  
-        console.log(data.Items);  
-        const obj = Object.assign({},data.Items);
-        $('#entries').html('');        
+        $('#entries').html('');   
+
+
         
         data.Items.forEach(element => {
             for (const [key, value] of Object.entries(element)) {
-            $('#entries').append('<p>' + key +':' +value+ '</p>')
->>>>>>> 97940997af7b6f1d8769b58abfaa35eeca2f1dba
+            $('#entries').append('<tr><td>' + key +'</td>' + '<td>' +value+ '</td></tr>');
             }
         }) ;   
     }
