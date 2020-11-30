@@ -204,8 +204,38 @@ a.pure-button-primary {
     text-transform: uppercase;
 }
 
+table{
+    width: 100%;
+    padding: 15px 10px;
+    margin: 10px 0;
+    text-align: center;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 2px solid rgb(252, 250, 250)
+}
 
+th {
+    padding: 10px 0;
+    /*background: #ccc; /* Remove this line to disable grey background color */
+    border-collapse: collapse;
+    /*border: 1px solid black*/
+    font: 17px Arial;
+}
 
+td{
+    border-collapse: collapse;
+    padding: 10px 0px;
+    font: Arial;
+    font-size: 15px;
+}
+
+tr{
+    padding: 10px 0px;
+}
+
+tr:hover {
+    background-color: #524e4e;
+}
 
 
 .splash2 {
@@ -217,7 +247,7 @@ a.pure-button-primary {
     color: white;
     position: relative;
     overflow: auto;
-    top: 0px; left: 325px; bottom: 0; right: 0;
+    top: 0px; left: 50px; bottom: 0; right: 0;
     text-align: center;
     text-transform: auto;
     
