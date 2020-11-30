@@ -1,6 +1,7 @@
 var API_URL = "https://1399n7dte4.execute-api.us-east-1.amazonaws.com/dev/getcovidhospitals"
 $('#submitButton').on('click',function(){
     console.log($("#zipcode").val());
+   
 $.ajax({
     type: 'GET',
     url:API_URL,
@@ -11,7 +12,7 @@ $.ajax({
     
 
     success: function(data){        
-        
+        $('#entries').show();
         $('#myTable > tbody:last-child').html('');
 
         data.Items.forEach(element => {
